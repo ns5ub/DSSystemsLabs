@@ -83,4 +83,29 @@ CREATE TABLE `dim_shippers` (
 
 #Excercise 1.2
 USE Northwind_DW;
-#CREATE TABLE `fact_orders` ();
+
+CREATE TABLE `fact_orders` (
+  `order_id` int(11) DEFAULT NULL,
+  `employee_id` int(11) DEFAULT NULL,
+  `customer_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `shipper_id` int(11) DEFAULT NULL,
+  `ship_name` varchar(50) DEFAULT NULL,
+  `ship_address` varchar(50) DEFAULT NULL,
+  `ship_city` varchar(50) DEFAULT NULL,
+  `ship_state_province` varchar(50) DEFAULT NULL,
+  `ship_zip_postal_code` varchar(50) DEFAULT NULL,
+  `ship_country_region` varchar(50) DEFAULT NULL,
+  `order_date` datetime DEFAULT NULL,
+  `shipped_date` datetime DEFAULT NULL,
+  `shipping_fee` decimal(19,4) DEFAULT '0.0000',
+  `taxes` decimal(19,4) DEFAULT '0.0000',
+  `payment_type` varchar(50) DEFAULT NULL,
+  `paid_date` datetime DEFAULT NULL,
+  `tax_rate` double DEFAULT '0',
+  `quantity` int(11) DEFAULT NULL,
+  `unit_price` decimal(19,4) DEFAULT '0.0000',
+  `discount` double NOT NULL DEFAULT '0',
+  `order_status` varchar(50) DEFAULT NULL,
+  `order_details_status` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
