@@ -1,9 +1,9 @@
-Usage:
-python3 api_yf_lab4.py <stock args, comma separated, no spaces>
+**Usage:** python3 api_yf_lab4.py <stock args, comma separated, no spaces>
 
-Given: python3 api_yf_lab4.py orcl,tsla,msft,xy,notreal
+**Given:** python3 api_yf_lab4.py orcl,tsla,msft,xy,notreal
 
-Output:
+**Output:**
+
 ORCL / Oracle Corporation / 76.49 / 
 
 TSLA / Tesla, Inc. / 838.29 / 
