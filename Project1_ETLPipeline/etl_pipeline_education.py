@@ -8,11 +8,13 @@ Created on Wed Mar 16 21:40:53 2022
 
 import sys
 import pandas as pd
-import argparse
 
+'''
+import argparse
 parser = argparse.ArgumentParser(description='ETL pipeline:Enrollment Data')
 parser.add_argument('export', help = "Choose where to export to.",choices=["csv", "json"])
 options = parser.parse_args()
+'''
 
 '''READING IN DATA: Format is CSV, from: https://schoolquality.virginia.gov/download-data'''
 #Reading in enrollment data for Virginia's public schools by county and year.
@@ -78,9 +80,18 @@ print()
 print("Summary Statistics/Year:")
 print(enrollment_data.groupby('Year')['All'].describe())
 
+
 '''EXPORTING DATA'''
+try:
+    enrollment_data.to_csv('Division_Enrollment_Flat.csv')
+    print("Exported to CSV")
+except Exception as e:
+    print("Something went wrong while exporting to CSV, Error Message:")
+    print(e)
+
+'''
 print()
-#Using the Data Option in 
+#Using Options via Arg Parser
 if options.export == "csv":
     try:
         enrollment_data.to_csv('Division_Enrollment_Flat.csv')
@@ -95,6 +106,6 @@ elif options.export == "json":
     except Exception as e:
         print("Something went wrong while exporting to JSON, Error Message:")
         print(e)
-
+'''
 
 #runfile('/Users/niki/Documents/4thYear/Semester 8/DSSystemsLabs/Project1_ETLPipeline/etl_pipeline_education.py', wdir='/Users/niki/Documents/4thYear/Semester 8/DSSystemsLabs/Project1_ETLPipeline', args="csv")
