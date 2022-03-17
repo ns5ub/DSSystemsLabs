@@ -8,11 +8,27 @@ Created on Wed Mar 16 21:40:53 2022
 
 import sys
 import pandas as pd
-import numpy as np
+import argparse
+
+parser = argparse.ArgumentParser(description='ETL pipeline:Enrollment Data')
+parser.add_argument('export', help = "Choose where to export to.",choices=["csv", "json"])
+options = parser.parse_args()
 
 '''READING IN DATA: Format is CSV, from: https://schoolquality.virginia.gov/download-data'''
 #Reading in enrollment data for Virginia's public schools by county and year.
-enrollment_data = pd.read_csv('Virginia_Division_Enrollment_AllYears.csv',header=0)
+
+enrollment_data = []
+try:
+    enrollment_data = pd.read_csv('Virginia_Division_Enrollment_AllYears.csv',header=0)
+except FileNotFoundError:
+    print("File not found! It should be uploaded in the github!")
+    exit()
+except pd.errors.ParserError:
+    print("File Format is Incorrect.")
+    exit()
+except Exception as e:
+    print("Something Went Wrong, Error Message:")
+    print(e)
 
 
 '''CLEANING DATA'''
@@ -35,11 +51,50 @@ enrollment_data = enrollment_data.set_index(['Year','Division', s])['Count'].uns
 enrollment_data.columns = column_headers
 
 #Display
-pd.set_option('display.max_rows', 5)
-pd.set_option('display.max_columns', None)
 pd.set_option('display.width', None)
 pd.set_option('display.max_colwidth', -1)
-print(enrollment_data)
+
+print("First 5 Rows")
+print(enrollment_data.head(5))
+
+'''DATA SUMMARY'''
+print()
+print("Data Summary:")
+print("Rows:", enrollment_data.shape[0])
+print("Columns:", enrollment_data.shape[1])
+
+#Source: https://stackoverflow.com/questions/15705630/get-the-rows-which-have-the-max-value-in-groups-using-groupby
+print("Max Total Enrollment/Year:")
+max_indices = enrollment_data.groupby(['Year'])['All'].transform(max) == enrollment_data['All']
+print(enrollment_data[max_indices])
+
+print()
+print("Min Total Enrollment/Year")
+min_indices = enrollment_data.groupby(['Year'])['All'].transform(min) == enrollment_data['All']
+print(enrollment_data[min_indices])
+
+#Source: https://stackoverflow.com/questions/33575587/pandas-dataframe-how-to-apply-describe-to-each-group-and-add-to-new-columns
+print()
+print("Summary Statistics/Year:")
+print(enrollment_data.groupby('Year')['All'].describe())
+
+'''EXPORTING DATA'''
+print()
+#Using the Data Option in 
+if options.export == "csv":
+    try:
+        enrollment_data.to_csv('Division_Enrollment_Flat.csv')
+        print("Exported to CSV")
+    except Exception as e:
+        print("Something went wrong while exporting to CSV, Error Message:")
+        print(e)
+elif options.export == "json":
+    try:
+        enrollment_data.to_json('Division_Enrollment_Flat.json')
+        print("Exported to JSON")
+    except Exception as e:
+        print("Something went wrong while exporting to JSON, Error Message:")
+        print(e)
 
 
-'''Actual Code'''
+#runfile('/Users/niki/Documents/4thYear/Semester 8/DSSystemsLabs/Project1_ETLPipeline/etl_pipeline_education.py', wdir='/Users/niki/Documents/4thYear/Semester 8/DSSystemsLabs/Project1_ETLPipeline', args="csv")
