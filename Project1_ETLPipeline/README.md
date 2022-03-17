@@ -22,7 +22,7 @@ _The converted (new) file should be written to disk (local file) or written to a
 Converted the new file back into a "Clean" CSV file at Division_Enrollment_Flat.csv
 
 ### 5. Data Summary
-_Generate a brief summary of the data file ingestion including 1.	Number of records 2. Number of columns _
+_Generate a brief summary of the data file ingestion including 1.	Number of records 2. Number of columns_
 
 Rows: 402
 
