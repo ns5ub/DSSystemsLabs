@@ -31,7 +31,7 @@ Repl.it: https://www.freecodecamp.org/news/create-a-discord-bot-with-python/
 ## Setup
 Hosted on a Repl.it: https://replit.com/@NikitaSaxena1/DSSystemsLabs#FinalProject_DiscordBot/bot.py 
 
-Running Code above starts the bot!
+Running Code above starts the bot! Unfortunately, it has a high start time due to dependencies for the entire github repo.
 
 The bot is already attached to this server:
 https://discord.gg/yAm6Z3hCtJ
