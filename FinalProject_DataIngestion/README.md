@@ -51,3 +51,6 @@ The pi field appears to converge to the actual value of pi (3.14...). It does so
 It starts at 4, dips just below 3.14, then just above, then just below, and so on, never exact converging.
 
 The exact function to generate this is unclear.
+
+A function we generated that generates the same values as the api for minutes past 5.
+-1 * (1/(minute)^3)) * cos (pi * minute) + pi
