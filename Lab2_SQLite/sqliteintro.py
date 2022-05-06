@@ -6,7 +6,17 @@ Created on Sun Feb 13 17:10:42 2022
 @author: niki
 """
 
+import pandas as pd
 import sqlite3
+
+# Read sqlite query results into a pandas DataFrame
+con = sqlite3.connect("data/portal_mammals.sqlite")
+df = pd.read_sql_query("SELECT * from surveys", con)
+
+# Verify that result of SQL query is stored in the dataframe
+print(df.head())
+
+con.close()
 
 # DB connection
 conn = sqlite3.connect('/Users/niki/Documents/4thYear/Semester 8/DSSystemsLabs/Lab2/orders.db') #creates new db or connects to existing
