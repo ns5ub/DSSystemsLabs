@@ -12,7 +12,7 @@ Benchmarks:
 6. You should also provide text output or a screenshot of your database table verifying consistent execution of your code each minute. Include this in your Github repository.
 
 
-## 1 - 3 Solution: schedule_api_call.py
+## 1 - 3 Gathering Data: schedule_api_call.py
 
 Our solution uses the python "schedule" module in order to execute the collection.
 
@@ -30,13 +30,13 @@ Unfortunately, we were not able to get this module to work properly.
 
 This deprecated version of the solution is still available at: cron_scheduled_api_call.py with the cron command being 0/1 4-5 * * *
 
-## 6: Code Execution: execution_screenshot.png, api_data.db
+## 6 Code Execution Proof: execution_screenshot.png, api_data.db
 
 All data can be accessed in the api_data.db file in the 'data' table. 
 
 A screenshot of this table within the DB Browser for SQLLite is available as execution_screenshot.png/
 
-## 5 Analysis data_analysis.py.ipynb
+## 5 Analysis: data_analysis.py.ipynb
 
 The API query yielded three fields: factor, pi, and time. Basic Analysis was done in the data_analysis.py.ipynb including some graphs and data testing.
 
