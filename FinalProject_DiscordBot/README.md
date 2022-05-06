@@ -12,10 +12,30 @@ message.
 and describe. This could be a database system or API.
 5. Submit all code in a standalone GitHub repository in your account.
 
-Using... https://realpython.com/how-to-make-a-discord-bot-python/
-
 o Successful build of the bot and API solution using Lightsail or EC2 or Repl.it (recommended)– 10 points
+
 o Functionality that meets all benchmarks – 10 points
+
 o Creativity / Innovation / Quality – 2 points
+
 o Documentation – Describes how to use the bot and the elements that make it operational 3 point
+
+### Resources
+
+Originally set up with the following tutorials: 
+
+Base: https://realpython.com/how-to-make-a-discord-bot-python/
+
+Repl.it: https://www.freecodecamp.org/news/create-a-discord-bot-with-python/
+
+## Setup
+Hosted on a Repl.it: https://replit.com/@NikitaSaxena1/DSSystemsLabs#FinalProject_DiscordBot/bot.py 
+
+Running Code above starts the bot!
+
+The bot is already attached to this server:
+https://discord.gg/yAm6Z3hCtJ
+
+Or you can add it to a server by clickin this link: https://discord.com/api/oauth2/authorize?client_id=972244704227909743&permissions=534723951680&scope=bot
+
 

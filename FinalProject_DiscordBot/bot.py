@@ -1,14 +1,20 @@
-# bot.py
+import discord
 import os
 import random
 
 from discord.ext import commands
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 
-load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
+#load_dotenv()
+#TOKEN = os.getenv('DISCORD_TOKEN')
+TOKEN = os.getenv("DISCORD_TOKEN")
 
+client = discord.Client()
 bot = commands.Bot(command_prefix='d.')
+
+@client.event
+async def on_ready():
+  print(f'{client.user} has connected to Discord!')
 
 @bot.command(name='99')
 async def nine_nine(ctx):
@@ -24,13 +30,9 @@ async def nine_nine(ctx):
     response = random.choice(brooklyn_99_quotes)
     await ctx.send(response)
 
-@bot.command(name='roll', help='Simulates rolling dice in the format AdB+C to roll A B-sided dice, and add C to the total.')
-async def roll(ctx, number_of_dice: int, number_of_sides: int):
-    dice = [
-        str(random.choice(range(1, number_of_sides + 1)))
-        for _ in range(number_of_dice)
-    ]
-    await ctx.send(', '.join(dice))
+@bot.command(name='r', help='Simulates rolling dice in the format AdB+C to roll A B-sided dice, and add C to the total.')
+async def roll(ctx, dice_string: str):
+  await ctx.send('dice called')
 
 @bot.event
 async def on_command_error(ctx, error):
