@@ -38,4 +38,19 @@ https://discord.gg/yAm6Z3hCtJ
 
 Or you can add it to a server by clickin this link: https://discord.com/api/oauth2/authorize?client_id=972244704227909743&permissions=534723951680&scope=bot
 
+https://discordpy.readthedocs.io/en/stable/ext/commands/commands.html 
+
+## 1 Help: bot.py
+
+Using the bot functionality by discord, help messages are generated automatically
+
+## 3 - 4 Functionality: bot.py
+
+### Roll dice with b.r
+Rolls some generic amount of dice and adds a flat value to them. b.help r gives more information.
+
+### Query Feature: TODO
+Connects to the DnD API and spits back out information
+
+### ???
 
