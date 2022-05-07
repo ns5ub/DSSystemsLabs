@@ -36,7 +36,7 @@ Hosted on a Repl.it: https://replit.com/@NikitaSaxena1/DSSystemsLabs#FinalProjec
 Running Code above starts the bot! Unfortunately, it has a high start time due to dependencies for the entire github repo. The discord token is stored as a secret on replit - the submission includes a join link for the replit to allow access to that when running the bot.
 
 The bot is already attached to this server:
-https://discord.gg/yAm6Z3hCtJ
+https://discord.gg/5ncgmn4bae
 
 Or you can add it to a server by clickin this link: https://discord.com/api/oauth2/authorize?client_id=972244704227909743&permissions=534723951680&scope=bot
 
