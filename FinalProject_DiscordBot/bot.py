@@ -1,12 +1,15 @@
 import discord
 import os
 import random
+import dotenv
+import requests
 
 from discord.ext import commands
-#from dotenv import load_dotenv
 
+#from dotenv import load_dotenv
 #load_dotenv()
 #TOKEN = os.getenv('DISCORD_TOKEN')
+
 TOKEN = os.getenv("DISCORD_TOKEN")
 
 client = discord.Client()
@@ -45,10 +48,6 @@ async def roll(ctx, dice_string: str, *args):
   rolls = [random.randint(1,dice_type) for r in range(num_dice)]
   roll_sum = sum(rolls)
   total = roll_sum + flat_add
-  print(rolls)
-  print(type(rolls))
-  print(rolls[0])
-  print(type(rolls[0]))
 
   # ', '.join(rolls)
   # join function was stalling bot? manually doing it...
@@ -60,9 +59,61 @@ async def roll(ctx, dice_string: str, *args):
   await ctx.send('*Rolling {} {}-Sided Dice and Adding {}. The average roll is {}...* \n{}'.format(num_dice, dice_type, flat_add, dice_average, roll_message))
 
 
+
+
+@bot.command(name='spell', help='Search for a spell using the DnD api')
+async def search_spell(ctx, *args):
+  
+  x = '{}'.format(' '.join(args))
+  url = f'https://www.dnd5eapi.co'
+  name_query = f"/api/spells/?name={x}"
+
+  spell_query_output = requests.request("GET", url +name_query).json()
+  print(spell_query_output)
+#  if(spell_query_output["count"]>1):
+#    await ctx.send("There are many spells that match this request. Maybe try a more specfic search?")
+#    return
+  if(spell_query_output["count"]<=0):
+       await ctx.send("No spells were found to match this request. Try another search")
+  #print(url + spell_query_output["results"][0]["url"])
+  spell = requests.request("GET", url + spell_query_output["results"][0]["url"]).json()
+  spell = spell
+  print(spell)
+  embed = discord.Embed(
+    title = spell["name"],
+    description = spell["desc"][0], 
+    color = 0xFF0000
+  )
+  embed.add_field(name="Range", value=spell["range"], inline = True)
+  embed.add_field(name = "Components", value = spell["components"])
+  embed.add_field(name="Duration", value = spell["duration"], inline=True)
+  embed.add_field(name="Concentration", value = spell["concentration"], inline=True)
+  await ctx.send(embed=embed)
+  return
+
+
+
+@bot.command(name='prediction', help='Get a prediction of how the next session will go')
+async def pred(ctx):
+  responses = [
+    '```High rollers tonight!```',
+    '```too many nat 1s```',
+    '```tpk is prevalent```',
+    '```the DM will cry```',
+    '```i don\'t know how you made it through, but you did```',
+    '```murder hobo rampage```',
+    '```have backup characters prepared```',
+    '```clean game```',
+    '```the final boss lurks around```',
+    '```shopping episode!!!```',
+    '```get distracted by a chair```'   
+  ]
+  await ctx.send(random.choice(responses))
+  return
 @bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.errors.MissingRequiredArgument):
         await ctx.send('You are missing an arguement')
+
 
 bot.run(TOKEN)
