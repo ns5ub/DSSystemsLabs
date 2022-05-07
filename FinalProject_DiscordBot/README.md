@@ -33,7 +33,7 @@ DOCS: https://discordpy.readthedocs.io/en/stable/ext/commands/commands.html
 ## Setup
 Hosted on a Repl.it: https://replit.com/@NikitaSaxena1/DSSystemsLabs#FinalProject_DiscordBot/bot.py 
 
-Running Code above starts the bot! Unfortunately, it has a high start time due to dependencies for the entire github repo.
+Running Code above starts the bot! Unfortunately, it has a high start time due to dependencies for the entire github repo. The discord token is stored as a secret on replit - the submission includes a join link for the replit to allow access to that.
 
 The bot is already attached to this server:
 https://discord.gg/yAm6Z3hCtJ
