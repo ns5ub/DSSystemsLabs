@@ -42,7 +42,11 @@ Or you can add it to a server by clickin this link: https://discord.com/api/oaut
 
 ## 1 Help: bot.py
 
-Using the bot functionality by discord, help messages are generated automatically
+Using the bot functionality by discord, help messages are generated automatically. These messages include information as to how to use the functionality.
+
+```
+d.help
+```
 
 ## 3 - 4 Functionality: bot.py
 
@@ -66,6 +70,8 @@ d.spell "spell name"
 Try `d.spell acid arrow`
 
 Connects to the DnD API and gives a description of the spell with other useful information.
+
+The DnD 5e API is accessible here: https://www.dnd5eapi.co/ It allows users to query any of the features, spells, and monsters included in the System Reference Document for the tabletop game Dungeons and Dragons.
 
 ### Prediction
 
