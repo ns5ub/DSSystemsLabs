@@ -17,6 +17,9 @@ bot = commands.Bot(command_prefix='d.')
 
 @bot.command(name='r', help='Simulates rolling dice in the format AdB+C. \n For example 3d6+4 rolls 3 6 sided dice and adds 4')
 async def roll(ctx, dice_string: str, *args):
+
+  full_string = '{}{}'.format(dice_string, ''.join(args))
+  
   try: 
     num_dice = dice_string.split('d')[0]
     dice_type = dice_string.split('d')[1]
@@ -43,20 +46,26 @@ async def roll(ctx, dice_string: str, *args):
     await ctx.send("Can't roll or add not a number!")
     return
 
-  #return num_dice, dice_type, flat_add
   dice_average = (num_dice * ((1+dice_type)/2)) + flat_add
   rolls = [random.randint(1,dice_type) for r in range(num_dice)]
   roll_sum = sum(rolls)
   total = roll_sum + flat_add
 
-  # ', '.join(rolls)
-  # join function was stalling bot? manually doing it...
-  rolls_string = str(rolls[0])
-  for i in range(1, len(rolls)):
-    print(i)
-    rolls_string = rolls_string + ", " + str(rolls[i])
-  roll_message = '> **Result:** {} \n*Dice Sum: {}* \n\t*Rolls: {}*'.format(total, roll_sum, rolls_string)
-  await ctx.send('*Rolling {} {}-Sided Dice and Adding {}. The average roll is {}...* \n{}'.format(num_dice, dice_type, flat_add, dice_average, roll_message))
+  rolls_string = '{}'.format(', '.join(map(str, rolls)))
+  roll_description = '*Rolling {} {}-Sided Dice and Adding {}...*\n> **Result:** {}'.format(num_dice, dice_type, flat_add, total)
+  
+  embed = discord.Embed(
+    title = full_string,
+    description = roll_description, 
+    color = 0xFF0000
+  )
+  embed.add_field(name="Rolls:", value=rolls_string)
+  embed.add_field(name = "_ _", value="_ _")
+  embed.add_field(name = "_ _", value="_ _")
+  embed.add_field(name = "Dice Sum:", value=roll_sum)
+  embed.add_field(name="Average Roll:", value = dice_average)
+  await ctx.send(embed=embed)
+  
 
 
 
