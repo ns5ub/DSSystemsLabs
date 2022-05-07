@@ -47,10 +47,31 @@ Using the bot functionality by discord, help messages are generated automaticall
 ## 3 - 4 Functionality: bot.py
 
 ### Roll dice with d.r
-Rolls some generic amount of dice and adds a flat value to them. b.help r gives more information.
 
-### Query Feature: TODO
-Connects to the DnD API and spits back out information
+```
+d.r AdB+C
+```
 
-### ???
+Try `d.r 2d20+4`
+
+Rolls some generic amount of dice and adds a flat value to them. `d.help r` gives more information. A, B, C must all be integers.
+
+### Query Feature
+
+```
+d.spell spell name
+d.spell "spell name"
+```
+
+Try `d.spell acid arrow`
+
+Connects to the DnD API and gives a description of the spell with other useful information.
+
+### Prediction
+
+```
+d.prediction
+```
+
+Get a magic 8-ball style prediction on how the next session will go, except this time, it's Dungeosn and Dragons themed!
 
